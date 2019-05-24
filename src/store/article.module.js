@@ -4,6 +4,7 @@ import {
   CommentsService,
   FavoriteService
 } from "@/common/api.service";
+
 import {
   FETCH_ARTICLE,
   FETCH_COMMENTS,
@@ -18,6 +19,7 @@ import {
   ARTICLE_DELETE,
   ARTICLE_RESET_STATE
 } from "./actions.type";
+
 import {
   RESET_STATE,
   SET_ARTICLE,
@@ -42,7 +44,6 @@ export const state = { ...initialState };
 
 export const actions = {
   async [FETCH_ARTICLE](context, articleSlug, prevArticle) {
-    // avoid extronuous network call if article exists
     if (prevArticle !== undefined) {
       return context.commit(SET_ARTICLE, prevArticle);
     }
@@ -70,18 +71,17 @@ export const actions = {
   },
   async [FAVORITE_REMOVE](context, payload) {
     const { data } = await FavoriteService.remove(payload);
-    // Update list as well. This allows us to favorite an article in the Home view.
     context.commit(UPDATE_ARTICLE_IN_LIST, data.article, { root: true });
     context.commit(SET_ARTICLE, data.article);
   },
   [ARTICLE_PUBLISH]({ state }) {
     return ArticlesService.create(state.article);
   },
-  [ARTICLE_DELETE](context, slug) {
-    return ArticlesService.destroy(slug);
-  },
   [ARTICLE_EDIT]({ state }) {
     return ArticlesService.update(state.article.slug, state.article);
+  },
+  [ARTICLE_DELETE](context, slug) {
+    return ArticlesService.destroy(slug);
   },
   [ARTICLE_EDIT_ADD_TAG](context, tag) {
     context.commit(TAG_ADD, tag);
@@ -94,7 +94,6 @@ export const actions = {
   }
 };
 
-/* eslint no-param-reassign: ["error", { "props": false }] */
 export const mutations = {
   [SET_ARTICLE](state, article) {
     state.article = article;

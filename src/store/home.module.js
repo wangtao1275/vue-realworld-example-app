@@ -1,5 +1,7 @@
 import { TagsService, ArticlesService } from "@/common/api.service";
+
 import { FETCH_ARTICLES, FETCH_TAGS } from "./actions.type";
+
 import {
   FETCH_START,
   FETCH_END,
@@ -51,7 +53,6 @@ const actions = {
   }
 };
 
-/* eslint no-param-reassign: ["error", { "props": false }] */
 const mutations = {
   [FETCH_START](state) {
     state.isLoading = true;
@@ -69,9 +70,7 @@ const mutations = {
       if (article.slug !== data.slug) {
         return article;
       }
-      // We could just return data, but it seems dangerous to
-      // mix the results of different api calls, so we
-      // protect ourselves by copying the information.
+
       article.favorited = data.favorited;
       article.favoritesCount = data.favoritesCount;
       return article;
