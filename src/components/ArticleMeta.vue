@@ -1,46 +1,41 @@
 <template>
   <div class="article-meta">
-    <router-link
-      :to="{ name: 'profile', params: { username: article.author.username } }"
-    >
+    <router-link :to="{name: 'profile', params: {username: article.author.username }}">
       <img :src="article.author.image" />
     </router-link>
     <div class="info">
-      <router-link
-        :to="{ name: 'profile', params: { username: article.author.username } }"
-        class="author"
-      >
-        {{ article.author.username }}
+      <router-link :to="{name: 'profile', params: {username: article.author.username }}" class="author">
+        {{article.author.username}}
       </router-link>
-      <span class="date">{{ article.createdAt | date }}</span>
+      <span class="date">{{ article.createdAt | date}}</span>
     </div>
     <template v-if="actions">
       <rwv-article-actions
         :article="article"
         :canModify="isCurrentUser()"
-      ></rwv-article-actions>
+      />
     </template>
     <template v-else>
       <button
         class="btn btn-sm pull-xs-right"
         v-if="!actions"
-        v-on:click="toggleFavorite"
+        v-on:click="toggleFvorite"
         :class="{
           'btn-primary': article.favorited,
           'btn-outline-primary': !article.favorited
         }"
       >
         <i class="ion-heart"></i>
-        <span class="counter"> {{ article.favoritesCount }} </span>
+        <span class="counter">{{article.favoritesCount}}</span>
       </button>
     </template>
   </div>
 </template>
 
 <script>
+import RwvArticleActions from "./ArticleActions";
 import { mapGetters } from "vuex";
-import RwvArticleActions from "@/components/ArticleActions";
-import { FAVORITE_ADD, FAVORITE_REMOVE } from "@/store/actions.type";
+import { FAVORITE_REMOVE, FAVORITE_ADD } from "../store/actions.type";
 
 export default {
   name: "RwvArticleMeta",
@@ -68,7 +63,8 @@ export default {
       }
       return false;
     },
-    toggleFavorite() {
+
+    toggleFvorite() {
       if (!this.isAuthenticated) {
         this.$router.push({ name: "login" });
         return;

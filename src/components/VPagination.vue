@@ -1,22 +1,24 @@
 <template>
-  <nav>
-    <ul class="pagination">
-      <li
-        v-for="page in pages"
-        :data-test="`page-link-${page}`"
-        :key="page"
-        :class="paginationClass(page)"
-        @click.prevent="changePage(page);"
-      >
-        <a class="page-link" href v-text="page" />
-      </li>
-    </ul>
-  </nav>
+  <div>
+    <nav>
+      <ul class="pagination">
+        <li
+          v-for="page in pages"
+          :data-test="`page-link-${page}`"
+          :key="page"
+          :class="paginationClass(page)"
+          @click.prevent="changePage(page);"
+        >
+          <a href="" class="page-link" v-text="page"></a>
+        </li>
+      </ul>
+    </nav>
+  </div>
 </template>
 
 <script>
 export default {
-  name: "Pagination",
+  name: "Vpagination",
   props: {
     pages: {
       type: Array,
@@ -28,9 +30,9 @@ export default {
     }
   },
   methods: {
-    changePage(goToPage) {
-      if (goToPage === this.currentPage) return;
-      this.$emit("update:currentPage", goToPage);
+    changePage(gotToPage) {
+      if (gotToPage === this.currentPage) return;
+      this.$emit("update:currentPage", gotToPage);
     },
     paginationClass(page) {
       return {
@@ -41,3 +43,6 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+</style>

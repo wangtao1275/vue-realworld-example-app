@@ -90,7 +90,7 @@ const mutations = {
   [SET_ERROR](state, error) {
     state.errors = error;
   },
-  [SET_AUTH](state, user){
+  [SET_AUTH](state, user) {
     state.isAuthenticated = true;
     state.user = user;
     state.errors = {};

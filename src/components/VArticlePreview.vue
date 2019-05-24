@@ -21,7 +21,10 @@ export default {
     TagList
   },
   props: {
-    article: { type: Object, required: true }
+    article: {
+      type: Object,
+      required: true
+    }
   },
   computed: {
     articleLink() {
