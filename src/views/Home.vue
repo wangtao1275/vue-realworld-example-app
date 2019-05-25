@@ -2,7 +2,7 @@
   <div class="home-page">
     <div class="banner">
       <div class="container">
-        <h1 class="logo-font">conduit</h1>
+        <h1 class="logo-font">Terry</h1>
         <p>A place to share your knowledge.</p>
       </div>
     </div>
@@ -10,11 +10,11 @@
       <div class="row">
         <div class="col-md-9">
           <div class="feed-toggle">
-            <ul class="nav nav-pills outline-active">
+            <ul class="nav nav-pills outline-acitve">
               <li v-if="isAuthenticated" class="nav-item">
                 <router-link
-                  :to="{ name: 'home-my-feed' }"
-                  class="nav-link"
+                  :to="{name: 'home-my-feed'}"
+                  class="nav-ink"
                   active-class="active"
                 >
                   Your Feed
@@ -22,21 +22,20 @@
               </li>
               <li class="nav-item">
                 <router-link
-                  :to="{ name: 'home' }"
-                  exact
-                  class="nav-link"
+                  :to="{name: 'home'}"
+                  class="nav-ink"
                   active-class="active"
                 >
                   Global Feed
                 </router-link>
               </li>
-              <li class="nav-item" v-if="tag">
+              <li v-if="tag" class="nav-item">
                 <router-link
-                  :to="{ name: 'home-tag', params: { tag } }"
-                  class="nav-link"
+                  :to="{name: 'home-tag', params: {tag}}"
+                  class="nav-ink"
                   active-class="active"
                 >
-                  <i class="ion-pound"></i> {{ tag }}
+                  <i class="ion-pound"></i>{{tag}}
                 </router-link>
               </li>
             </ul>
@@ -58,23 +57,23 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-import RwvTag from "@/components/VTag";
-import { FETCH_TAGS } from "@/store/actions.type";
+import RwvTag from '@/components/VTag'
+import { FETCH_TAGS } from '@/store/actions.type'
+  export default {
+    name: "home",
+    components: {
+      RwvTag
+    },
+    mounted () {
+      this.$store.dispatch(FETCH_TAGS);
+    },
+    computed: {
+      ...mapGetters(['isAuthenticated', 'tags']),
+      tag() {
+        return this.$route.params.tag;
+      }
+    },
 
-export default {
-  name: "home",
-  components: {
-    RwvTag
-  },
-  mounted() {
-    this.$store.dispatch(FETCH_TAGS);
-  },
-  computed: {
-    ...mapGetters(["isAuthenticated", "tags"]),
-    tag() {
-      return this.$route.params.tag;
-    }
   }
-};
 </script>
+
