@@ -1,31 +1,33 @@
 <template>
-  <div>
-    <!-- Used when user is also author -->
-  <span v-if="canModify">
-    <router-link class="btn btn-sm btn-outline-secondary" :to="editArticleLink">
-      <i class="ion-edit"></i><span>&nbsp; Edit Article</span>
-    </router-link>
-    <span>&nbsp; &nbsp;</span>
-    <button class="btn btn-sm btn-outline-danger" @click="deleteArticle">
-      <i class="ion-trash-a"></i><span>&nbsp; Delete Article</span>
-    </button>
-  </span>
+  <!-- Used when user is also author -->
+    <span v-if="canModify">
+      <router-link class="btn btn-sm btn-outline-secondary" :to="editArticleLink">
+        <i class="ion-edit"></i>
+        <span>&nbsp; Edit Article</span>
+      </router-link>
+      <span>&nbsp; &nbsp;</span>
+      <button class="btn btn-sm btn-outline-danger" @click="deleteArticle">
+        <i class="ion-trash-a"></i>
+        <span>&nbsp; Delete Article</span>
+      </button>
+    </span>
 
-  <!-- Used in ArticleView when not author -->
-  <span v-else>
-    <button class="btn btn-sm btn-outline-secondary" @click="toggleFollow">
-      <i class="ion-plus-around"></i><span>&nbsp; </span>
-      <span v-text="followUserLabel"></span>
-    </button>
-    <span>&nbsp; &nbsp;</span>
-    <button class="btn btn-sm" @click="toggleFavorite" :class="toggleFavoriteButtonClasses">
-      <i class="ion-heart"></i><span>&nbsp; </span>
-      <span v-text="favoriteArticleLabel"></span><span>&nbsp;</span>
-      <span class="counter" v-text="favoriteCounter"></span>
-    </button>
-  </span>
-
-  </div>
+    <!-- Used in ArticleView when not author -->
+    <span v-else>
+      <button class="btn btn-sm btn-outline-secondary" @click="toggleFollow">
+        <i class="ion-plus-around"></i>
+        <span>&nbsp;</span>
+        <span v-text="followUserLabel"></span>
+      </button>
+      <span>&nbsp; &nbsp;</span>
+      <button class="btn btn-sm" @click="toggleFavorite" :class="toggleFavoriteButtonClasses">
+        <i class="ion-heart"></i>
+        <span>&nbsp;</span>
+        <span v-text="favoriteArticleLabel"></span>
+        <span>&nbsp;</span>
+        <span class="counter" v-text="favoriteCounter"></span>
+      </button>
+    </span>
 </template>
 
 <script>

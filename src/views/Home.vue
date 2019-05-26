@@ -14,7 +14,7 @@
               <li v-if="isAuthenticated" class="nav-item">
                 <router-link
                   :to="{name: 'home-my-feed'}"
-                  class="nav-ink"
+                  class="nav-link"
                   active-class="active"
                 >
                   Your Feed
@@ -23,7 +23,8 @@
               <li class="nav-item">
                 <router-link
                   :to="{name: 'home'}"
-                  class="nav-ink"
+                  exact
+                  class="nav-link"
                   active-class="active"
                 >
                   Global Feed
@@ -32,7 +33,7 @@
               <li v-if="tag" class="nav-item">
                 <router-link
                   :to="{name: 'home-tag', params: {tag}}"
-                  class="nav-ink"
+                  class="nav-link"
                   active-class="active"
                 >
                   <i class="ion-pound"></i>{{tag}}

@@ -46,7 +46,7 @@
                 <router-link
                   :to="{name: 'profile'}"
                   exact
-                  class="nav-ink"
+                  class="nav-link"
                   active-class="active"
                 >
                   My Articles
@@ -55,7 +55,7 @@
               <li class="nav-item">
                 <router-link
                   :to="{name: 'profile-favorites'}"
-                  class="nav-ink"
+                  class="nav-link"
                   active-class="active"
                   exact
                 >
@@ -88,8 +88,8 @@ export default {
   },
   methods: {
     isCurrentUser() {
-      if (this.currentUser.username && this.profile.author.username) {
-        return this.currentUser.username === this.profile.author.username;
+      if (this.currentUser.username && this.profile.username) {
+        return this.currentUser.username === this.profile.username;
       }
       return false;
     },
@@ -108,6 +108,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss" scoped>
-</style>
