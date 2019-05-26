@@ -72,39 +72,42 @@
 </template>
 
 <script>
-import { FETCH_PROFILE, FETCH_PROFILE_FOLLOW, FETCH_PROFILE_UNFOLLOW } from '../store/actions.type';
-import { mapGetters } from 'vuex';
-  export default {
-    name: "RwvProfile",
-    mounted () {
-      this.$store.dispatch(FETCH_PROFILE, this.$route.params);
-    },
-    computed: {
-      ...mapGetters(["currentUser", "profile", "isAuthenticated"])
-    },
-    methods: {
-      isCurrentUser() {
-        if (this.currentUser.username && this.profile.author.username) {
-          return this.currentUser.username === this.profile.author.username;
-        }
-        return false;
-      },
-      follow(){
-        if(!this.isAuthenticated) return;
-        this.$store.dispatch(FETCH_PROFILE_FOLLOW, this.$route.params)
-      },
-      unfollow(){
-        this.$store.dispatch(FETCH_PROFILE_UNFOLLOW, this.$route.params)
+import {
+  FETCH_PROFILE,
+  FETCH_PROFILE_FOLLOW,
+  FETCH_PROFILE_UNFOLLOW
+} from "../store/actions.type";
+import { mapGetters } from "vuex";
+export default {
+  name: "RwvProfile",
+  mounted() {
+    this.$store.dispatch(FETCH_PROFILE, this.$route.params);
+  },
+  computed: {
+    ...mapGetters(["currentUser", "profile", "isAuthenticated"])
+  },
+  methods: {
+    isCurrentUser() {
+      if (this.currentUser.username && this.profile.author.username) {
+        return this.currentUser.username === this.profile.author.username;
       }
+      return false;
     },
-    watch: {
-      $route(to) {
-        this.$store.dispatch(FETCH_PROFILE, to.params)
-      }
+    follow() {
+      if (!this.isAuthenticated) return;
+      this.$store.dispatch(FETCH_PROFILE_FOLLOW, this.$route.params);
     },
+    unfollow() {
+      this.$store.dispatch(FETCH_PROFILE_UNFOLLOW, this.$route.params);
+    }
+  },
+  watch: {
+    $route(to) {
+      this.$store.dispatch(FETCH_PROFILE, to.params);
+    }
   }
+};
 </script>
 
 <style lang="scss" scoped>
-
 </style>

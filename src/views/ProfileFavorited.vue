@@ -5,15 +5,16 @@
 </template>
 
 <script>
-  export default {
-    name: "RwvProfileArticles",
-    components: {
-      RwvArticleList
-    },
-    computed: {
-      favorited() {
-        return this.$route.params.username
-      }
-    },
+import RwvArticleList from "../components/ArticleList";
+export default {
+  name: "RwvProfileArticles",
+  components: {
+    RwvArticleList
+  },
+  computed: {
+    favorited() {
+      return this.$route.params.username;
+    }
   }
+};
 </script>

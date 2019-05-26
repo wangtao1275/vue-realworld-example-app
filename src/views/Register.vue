@@ -33,31 +33,32 @@
 </template>
 
 <script>
-import { REGISTER } from '../store/actions.type';
-import { mapState } from 'vuex';
-  export default {
-    name: "RwvRegister",
-    data() {
-      return {
-        username: null,
-        email: null,
-        password: null
-      }
-    },
-    methods: {
-      onSubmit() {
-        this.$store.dispatch(REGISTER, {
+import { REGISTER } from "../store/actions.type";
+import { mapState } from "vuex";
+export default {
+  name: "RwvRegister",
+  data() {
+    return {
+      username: null,
+      email: null,
+      password: null
+    };
+  },
+  methods: {
+    onSubmit() {
+      this.$store
+        .dispatch(REGISTER, {
           email: this.email,
           password: this.password,
           username: this.username
         })
-          .then(()=> this.$router.push({name: "home"}));
-      }
-    },
-    computed: {
-      ...mapState({
-        errors: state=>state.auth.errors
-      })
-    },
+        .then(() => this.$router.push({ name: "home" }));
+    }
+  },
+  computed: {
+    ...mapState({
+      errors: state => state.auth.errors
+    })
   }
+};
 </script>

@@ -30,26 +30,27 @@
 </template>
 
 <script>
-import { LOGIN } from '../store/actions.type';
-import { mapState } from 'vuex';
-  export default {
-    name: "RwvLogin",
-    data() {
-      return {
-        email: null,
-        password: null
-      }
-    },
-    methods: {
-      onSubmit(email, password) {
-        this.$store.dispatch(LOGIN, {email, password})
-          .then(()=> this.$router.push({name: "home"}));
-      }
-    },
-    computed: {
-      ...mapState({
-        errors: state=>state.auth.errors
-      })
-    },
+import { LOGIN } from "../store/actions.type";
+import { mapState } from "vuex";
+export default {
+  name: "RwvLogin",
+  data() {
+    return {
+      email: null,
+      password: null
+    };
+  },
+  methods: {
+    onSubmit(email, password) {
+      this.$store
+        .dispatch(LOGIN, { email, password })
+        .then(() => this.$router.push({ name: "home" }));
+    }
+  },
+  computed: {
+    ...mapState({
+      errors: state => state.auth.errors
+    })
   }
+};
 </script>

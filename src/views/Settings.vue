@@ -41,23 +41,24 @@
 </template>
 
 <script>
-import { UPDATE_USER, LOGOUT } from '../store/actions.type';
-import { mapState, mapGetters } from 'vuex';
-  export default {
-    name: "RwvSettings",
-    methods: {
-      updateSettings() {
-        this.$store.dispatch(UPDATE_USER, this.currentUser)
-          .then(()=> this.$router.push({name: "home"}));
-      },
-      logout(){
-        this.$store.dispatch(LOGOUT).then(()=>{
-          this.$router.push({name: "home"})
-        })
-      }
+import { UPDATE_USER, LOGOUT } from "../store/actions.type";
+import { mapGetters } from "vuex";
+export default {
+  name: "RwvSettings",
+  methods: {
+    updateSettings() {
+      this.$store
+        .dispatch(UPDATE_USER, this.currentUser)
+        .then(() => this.$router.push({ name: "home" }));
     },
-    computed: {
-      ...mapGetters(["currentUser"])
-    },
+    logout() {
+      this.$store.dispatch(LOGOUT).then(() => {
+        this.$router.push({ name: "home" });
+      });
+    }
+  },
+  computed: {
+    ...mapGetters(["currentUser"])
   }
+};
 </script>
